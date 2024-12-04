@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "331557664849",
+    "project_id": "infinity-pioneers",
+    "storage_bucket": "infinity-pioneers.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331557664849:android:927ac36ad6d8258568e070",
+        "android_client_info": {
+          "package_name": "com.example.a3certify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331557664849-h3o66q03eiasuncjgvfbsk9vmmgpubjf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.a3certify",
+            "certificate_hash": "a15bce1b7e55045c76159ff415bd52b9625a3888"
+          }
+        },
+        {
+          "client_id": "331557664849-crec44gsvu98df7pf7jd1aq7s6acmn53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8SbKliLRTy4fHJJuEGBVeDU4OgLFCqGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331557664849-crec44gsvu98df7pf7jd1aq7s6acmn53.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "331557664849-joj9slk73vrgj6071hrkrq18sc8nk6qa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.a3certify"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

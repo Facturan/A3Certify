@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user owns the document
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // Helper function to check if user is admin
+    function isAdmin() {
+      return isAuthenticated() && 
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    // Rules for user collection
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (isOwner(userId) || isAdmin());
+      allow create: if isAuthenticated() && isOwner(userId);
+      allow update: if isAuthenticated() && (isOwner(userId) || isAdmin());
+      allow delete: if isAuthenticated() && isAdmin();
+    }
+
+    // Rules for requests collection
+    match /requests/{requestId} {
+      // Anyone authenticated can create a request
+      allow create: if isAuthenticated();
+      
+      // Users can read their own requests, admins can read all
+      allow read: if isAuthenticated() && (
+        isOwner(resource.data.uid) || isAdmin()
+      );
+      
+      // Users can update their pending requests, admins can update any
+      allow update: if isAuthenticated() && (
+        (isOwner(resource.data.uid) && resource.data.status == 'pending') || 
+        isAdmin()
+      );
+      
+      // Only admins can delete requests
+      allow delete: if isAuthenticated() && isAdmin();
+    }
+  }
+}
